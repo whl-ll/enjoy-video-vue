@@ -33,7 +33,7 @@ export default {
           index:'2'
         }
       ],
-      recommendThumbnail:require('@/assets/bilibiliavatar.png'),
+      recommendThumbnail:require('@/assets/ev.png'),
       leftChannels: [],
       rightChannels: [],
       recommendedVideos:[],

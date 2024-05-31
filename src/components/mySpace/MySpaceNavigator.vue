@@ -81,12 +81,12 @@ export default {
       const userInfo = this.$store.state.userInfo;
       if (userInfo) {
         if(!userInfo.avatar){
-          userInfo.avatar = require('@/assets/defaultAvatar.png');
+          userInfo.avatar = require('@/assets/ev.png');
         }
         return userInfo;
       } else {
         return {
-          avatar: require('@/assets/defaultAvatar.png'),
+          avatar: require('@/assets/ev.png'),
           nick: '-',
           sing: '-',
           gender: '-'

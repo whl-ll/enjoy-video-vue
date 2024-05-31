@@ -202,6 +202,9 @@ export default {
             </div>
             <div class="user-moments-list-item-moment-img" v-if="moment.type==='1' ">
               <img :src="moment.content.contentDetail.img" alt="">
+              <div style="float:right;">
+                <img src="@/assets/Exia.gif" alt="My Animation">
+              </div>
             </div>
             <div class="user-moments-list-item-moment-video" v-if="moment.type==='0' ">
               <img :src="moment.content.contentDetail.thumbnail" alt="">
@@ -227,7 +230,9 @@ export default {
                       ? moment.content.contentDetail.danmuCount : 0}}
                   </div>
                 </div>
-
+              </div>
+              <div style="float:right;">
+                <img src="@/assets/alice.gif" alt="My Animation">
               </div>
             </div>
           </div>
@@ -247,7 +252,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #4e4e7a;
+  background-color: #ffffff;
 
   .user-moments-post{
     width: 50%;
@@ -321,6 +326,7 @@ export default {
       flex-direction: column;
       margin-bottom: 10px;
       border-radius: 5px;
+      border: 2px solid pink;
 
       .user-moments-list-item-userInfo{
         display: flex;
@@ -331,7 +337,7 @@ export default {
           border-radius: 5px;
         }
         .user-moments-list-item-userInfo-detail{
-          margin-left: 20px;
+          margin-left: 1px;
         }
       }
       .user-moments-list-item-moment{
@@ -353,10 +359,10 @@ export default {
           }
         }
         .user-moments-list-item-moment-video{
-          background-color: #f5f5f5;
+          background-color: #ffffff;
           border-radius: 5px;
           display: flex;
-          padding: 10px;
+          padding: 1px;
 
           img{
             max-height: 180px;

@@ -27,17 +27,6 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 new Vue({
-  // render(createElement){
-  //   return createElement(App);
-  // },
-  //
-  // render:(createElement) => {
-  //   return createElement(App);
-  // }
-  //
-  // render:createElement => createElement(App);
-  //
-  // render:h => h(App);
   router,
   store,
   /**

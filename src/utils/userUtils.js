@@ -6,7 +6,7 @@ export const usingRefreshToken = false;
 export default {
     data() {
         return {
-            defaultAvatar:require('@/assets/defaultAvatar.png'),
+            defaultAvatar:require('@/assets/ev.png'),
         };
     },
     methods: {

@@ -93,7 +93,7 @@ export default {
       if(userInfo && userInfo.avatar && userInfo.avatar !== '' ){
         return userInfo.avatar;
       }else{
-        return require('@/assets/bilibiliavatar.png');
+        return require('@/assets/ev.png');
       }
     }
   }
@@ -114,13 +114,13 @@ export default {
       </div>
       <div class="comment-header-sort">
         <div class="hot-sort">
-          最热
+
         </div>
         <div class="part-symbol">
 
         </div>
         <div class="time-sort">
-          最新
+
         </div>
       </div>
 
@@ -131,7 +131,7 @@ export default {
       <div v-if="!this.isUserLoggedIn" class="comment-body-before-login">
         <div class="comment-send-area-before-login">
           <div class="user-avatar-before-login">
-            <img :src="require('@/assets/bilibiliavatar.png')" alt="">
+            <img :src="require('@/assets/ev.png')" alt="">
           </div>
           <div class="comment-input-before-login">
             <textarea class="comment-input-textarea"
@@ -303,9 +303,7 @@ export default {
       }
 
       .part-symbol{
-        height: 11px;
-        margin: 0 12px;
-        border-left: solid 1px;
+
       }
     }
   }

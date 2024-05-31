@@ -93,7 +93,7 @@ export default {
     },
 
     async initPlayer(){
-      const videoUrl = 'http://localhost:15005/video-slices?url=' + this.videoDetail.url;
+      const videoUrl = 'http://49.235.134.39:15005/video-slices?url=' + this.videoDetail.url;
       const danmuList = await this.getDanmus();
       if(danmuList && danmuList.length > 0){
         danmuList.forEach(item =>{
@@ -103,7 +103,7 @@ export default {
         });
       }
       this.player = new Player({
-        id:'bili-player',
+        id:'ev-player',
         url:videoUrl,
         width:'800px',
         height:'450px',
@@ -150,7 +150,7 @@ export default {
     },
 
     initWebsocket(){
-      const url = 'ws://localhost:15005/imserver/' + localStorage.getItem('token');
+      const url = 'ws://49.235.134.39:15005/imserver/' + localStorage.getItem('token');
       console.log(url);
       this.ws = new WebSocket(url);
       this.ws.onmessage = (event) =>{
@@ -267,11 +267,6 @@ export default {
           require('@/assets/icon/dianzan2.png') : require('@/assets/icon/dianzan1.png');
     },
 
-    coinIcon(){
-      return this.hasCoin?
-          require('@/assets/icon/toubi2.png') : require('@/assets/icon/toubi1.png');
-    },
-
     collectIcon(){
       return this.collected?
           require('@/assets/icon/shoucang2.png') : require('@/assets/icon/shoucang1.png');
@@ -313,7 +308,7 @@ export default {
           </div>
         </div>
 <!--        播放器页面站位DOM-->
-        <div id="bili-player"></div>
+        <div id="ev-player"></div>
 
         <div class="danmu-bar">
 <!--          数据统计-->
@@ -339,11 +334,6 @@ export default {
             <div class="like-coin-collect">
               <img :src="likeIcon" @click="addOrDeleteVideoLike" alt="">
               <div>{{likeCount}}</div>
-            </div>
-            <!--              投币-->
-            <div class="like-coin-collect">
-              <img :src="coinIcon" @click="addVideoCoins" alt="">
-              <div>{{coinCount}}</div>
             </div>
             <!--              收藏-->
             <div class="like-coin-collect">

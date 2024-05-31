@@ -107,15 +107,12 @@ export default {
 
   computed:{
 
-    // isUserLoggedIn(){
-    //   return localStorage.getItem('token');
-    // }
     avatar(){
       const userInfo = this.$store.state.userInfo;
       if(userInfo && userInfo.avatar && userInfo.avatar !== '' ){
         return userInfo.avatar;
       }else{
-        return require('@/assets/bilibiliavatar.png');
+        return require('@/assets/ev.png');
       }
     }
 
@@ -125,7 +122,7 @@ export default {
 
 <template>
 
-  <div class="bili-header">
+  <div class="ev-header">
 
     <div class="header-nav-container">
 
@@ -140,7 +137,7 @@ export default {
           <div class="nav-search-content">
             <input class="nav-search-input"
                     type="text" autocomplete="off"
-                    maxlength="100" placeholder="请输入要搜索的内容"
+                    maxlength="100" placeholder="请输入您想观看的视频内容"
                     v-model="searchTxt">
           </div>
           <div class="nav-search-btn">
@@ -176,7 +173,11 @@ export default {
           </el-dropdown>
         </div>
         <div v-else class="user-center">
-          <el-button class="login-button" type="text" @click="dialogVisible = true">
+          <el-button
+              class="login-button"
+              type="text"
+              style="font-family: 'Hiragino Sans GB', sans-serif;"
+              @click="dialogVisible = true">
             登录
           </el-button>
           <div class="transparent-dialog">
@@ -185,7 +186,9 @@ export default {
                 :visible.sync="dialogVisible"
                 width="650px"
                 height="500px"
-                style="background-color: transparent;"
+                :style="{ borderRadius: '10px' }"
+                :show-close="true"
+                :center="true"
                 show-header="false">
               <LoginDialog/>
             </el-dialog>
@@ -229,15 +232,6 @@ export default {
               </el-button>
             </div>
 
-<!--            <div v-else>-->
-<!--              <div>-->
-<!--                登录即可查看动态-->
-<!--              </div>-->
-<!--              <el-button type="info">-->
-<!--                立即登录-->
-<!--              </el-button>-->
-<!--            </div>-->
-
             <div v-else>
               <div style="text-align: center; font-size: 16px; padding: 10px">
                 登录即可查看动态
@@ -247,11 +241,11 @@ export default {
               </el-button>
             </div>
 
-<!--            <el-button slot="reference" class="el-btn-moments">hover 激活</el-button>-->
             <el-button slot="reference"
-                       icon="el-icon-star-off"
+                       icon="el-icon-picture-outline-round"
                        class="el-btn-moments"
-                       type="warning"
+                       style="background-color: #FFC0CB"
+                       type=""
                        circle>
             </el-button>
           </el-popover>
@@ -294,9 +288,11 @@ export default {
                 立即登录
               </el-button>
             </div>
-            <el-button class="right-entry-button" type="warning"
+            <el-button class="right-entry-button"
+                       style="background-color: #FFC0CB"
+                       type=""
                        slot="reference"
-                       icon="el-icon-star-off"
+                       icon="el-icon-video-play"
                        @click="jumpWithLoginUser('/userHistory')"
                        circle>
             </el-button>
@@ -304,9 +300,12 @@ export default {
           <span style="color: white; margin-top: 5px">历史</span>
         </div>
         <div class="right-entry-content">
-          <el-button type="warning" icon="el-icon-upload2" circle
+          <el-button style="background-color: #FFC0CB"
+                     type=""
+                     icon="el-icon-upload2"
+                     circle
                      @click="jumpWithLoginUser('postContent')"></el-button>
-          <span style="color: white; margin-top: 5px">投稿</span>
+          <span style="color: white; margin-top: 5px">发布</span>
         </div>
       </div>
 
@@ -323,7 +322,7 @@ export default {
 
 <style scoped lang="less">
 
-.bili-header{
+.ev-header{
 
   .header-nav-container{
 
@@ -348,8 +347,8 @@ export default {
 
     .center-search-bar{
       flex: 1 auto;
-      min-width: 181px;
-      max-width: 500px;
+      min-width: 200px;
+      max-width: 400px;
       .nav-search-form{
         display: flex;
         justify-content: space-between;
@@ -402,12 +401,13 @@ export default {
       .user-center{
         margin-right: 10px;
         .login-button{
-          color: #00a1d6;
+          color: #000000;
           width: 50px;
           height: 50px;
           border-radius: 50%;
           font-weight: bold;
-          background-color: #fff;
+          background-color: #FFC0CB;
+          font-family: "Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
         }
         .transparent-dialog {
           background-color: transparent!important;
@@ -417,11 +417,6 @@ export default {
         }
       }
       .right-entry-moments{
-        //margin-right: 10px;
-        //
-        //.el-btn-moments{
-        //  height: 100%;
-        //}
         margin: 0 10px;
         display: flex;
         flex-direction: column;
@@ -429,7 +424,6 @@ export default {
       }
       .right-entry-content{
         margin: 0 10px;
-        //margin-right: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;

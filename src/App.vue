@@ -1,7 +1,6 @@
 <!--包含了HTML的代码，用于定义组件的结构，而且可以嵌套VUE的指令、表达式、事件处理等等。-->
 <template>
   <div id="app">
-<!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
     <router-view></router-view>
   </div>
 </template>

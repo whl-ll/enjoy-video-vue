@@ -100,8 +100,6 @@ export default {
   width: 650px;
   height: 415px;
   border-radius: 5px;
-  /* 阴影 */
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
   /* 相对定位 */
   position: relative;
 }
@@ -112,7 +110,7 @@ export default {
   left: 5%;
   background-color: #d3b7d8;
   width: 320px;
-  height: 500px;
+  height: 520px;
   border-radius: 5px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   display: flex;

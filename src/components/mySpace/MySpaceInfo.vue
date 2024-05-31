@@ -13,7 +13,7 @@ export default {
         userId:0,
         sign:'sign',
         gender:0,
-        birth:'1999-01-01'
+        birth:'2002-09-15'
       }
     }
   },
