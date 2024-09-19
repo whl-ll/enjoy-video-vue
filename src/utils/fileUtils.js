@@ -1,7 +1,6 @@
 import SparkMD5 from "spark-md5";
 import videoApi from "@/api/videoApi";
 
-
 export default {
 
     methods: {
@@ -93,7 +92,5 @@ export default {
             }
             return new Blob([ab], { type: 'image/png' });
         },
-
     }
-
 }

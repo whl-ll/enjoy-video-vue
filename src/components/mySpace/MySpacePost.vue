@@ -64,7 +64,6 @@ export default {
         const values = Object.values(areasCountMap);
         this.areaList[0].count = values.reduce((x,y)=> x+y);
       }
-
     },
 
     async pageListUserVideos(){
@@ -107,7 +106,7 @@ export default {
           我的视频
         </div>
       </div>
-      <!--      视频分类-->
+<!--视频分类-->
       <div class="my-space-post-classification">
         <el-menu :default-active.sync="activeIndex"
                  class="filter-menu" mode="horizontal" @select="handleSelect">
@@ -119,7 +118,7 @@ export default {
           </el-menu-item>
         </el-menu>
       </div>
-      <!--      视频列表-->
+<!--视频列表-->
       <div class="my-space-post-videos">
         <div class="videos-item" v-for="(video,index) in videos"
              :key="index">
@@ -148,12 +147,11 @@ export default {
                 {{video.createTime}}
               </span>
               </div>
-
             </div>
           </div>
         </div>
       </div>
-      <!--      分页展示视频-->
+<!--分页展示视频-->
       <el-pagination class="page-list-videos"
                      background
                      layout="prev, pager, next"
@@ -162,7 +160,6 @@ export default {
                      @current-change="pageListUserVideos"
                      :total="totalVideoCount">
       </el-pagination>
-
     </div>
   </div>
 </template>
@@ -181,7 +178,6 @@ export default {
       .my-space-post-title{
         font-size: 24px;
       }
-
     }
 
     .my-space-post-classification{
@@ -190,13 +186,11 @@ export default {
         background-color: #edf2f9;
         border-radius: 5px;
         .filter-menu-item{
-
           background-color: #edf2f9;
           color: black;
           border-radius: 5px;
         }
       }
-
     }
 
     .my-space-post-videos{
@@ -213,6 +207,7 @@ export default {
               width: 240px;
               height: 135px;
               border-radius: 5px;
+              object-fit: contain;
             }
           }
           .video-info{
@@ -249,11 +244,7 @@ export default {
             }
           }
         }
-
-
-
       }
-
     }
 
     .page-list-videos{
@@ -263,7 +254,5 @@ export default {
       align-items: center;
     }
   }
-
 }
-
 </style>

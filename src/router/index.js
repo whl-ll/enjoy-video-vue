@@ -13,6 +13,7 @@ import MySpaceFollowing from "@/components/mySpace/MySpaceFollowing.vue";
 import UserMoments from "@/components/UserMoments.vue";
 import UserHistory from "@/components/UserHistory.vue";
 import SearchContents from "@/components/search/SearchContents.vue";
+import MusicPlayer from "@/components/MusicPlayer.vue";
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
         // 注册登录页
         path:'/userLogin',
         component:UserLogin
+    },
+    {
+        // 音乐
+        path: '/musicPlayer',
+        component: MusicPlayer
     },
     {
         // 个人中心

@@ -8,5 +8,4 @@ export default {
             return format(new Date(date), dateFormat);
         }
     }
-
 }

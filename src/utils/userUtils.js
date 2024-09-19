@@ -76,7 +76,6 @@ export default {
             localStorage.removeItem('token');
             location.reload(); //刷新页面
         },
-
     },
 
     computed: {
@@ -85,6 +84,5 @@ export default {
             let token = localStorage.getItem('token');
             return token && token !== 'null';
         }
-
     }
 }

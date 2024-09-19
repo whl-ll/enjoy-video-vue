@@ -7,7 +7,6 @@ const httpRequest = axios.create({
     timeout:10000
 });
 
-
 //请求拦截器
 httpRequest.interceptors.request.use(function (config){
 

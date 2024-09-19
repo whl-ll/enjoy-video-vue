@@ -13,7 +13,6 @@ export default {
       collectionCount:0,
       myCollectionGroups:[],
       myCollections:[]
-
     }
   },
 
@@ -54,7 +53,6 @@ export default {
         })
       }
     },
-
   },
 
   mounted() {
@@ -99,7 +97,6 @@ export default {
         <div class="home-post-content-item-infos-createTime">
           {{myPostVideo.createTime}}
         </div>
-
       </div>
     </div>
 
@@ -156,8 +153,6 @@ export default {
         color: gray;
       }
     }
-
-
   }
 
   .home-post-content{
@@ -181,6 +176,7 @@ export default {
           height:100%;
           width: 100%;
           border-radius: 5px;
+          object-fit: contain;
         }
       }
 
@@ -205,9 +201,7 @@ export default {
         font-size: 16px;
         color: gray;
       }
-
     }
-
   }
 
   .home-collection-header{
@@ -225,8 +219,6 @@ export default {
         color: gray;
       }
     }
-
-
   }
 
   .home-collection-content{
@@ -266,17 +258,13 @@ export default {
           background: rgba(0,0,0,.5);
           border-radius: 9px;
         }
-
       }
 
       .home-collection-content-item-title{
         text-align: center;
         font-size: 18px;
       }
-
     }
-
   }
-
 }
 </style>

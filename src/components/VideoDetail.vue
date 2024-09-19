@@ -36,7 +36,8 @@ export default {
       followed:false,
       showLoginDialog:false,
       defaultDanmuConfig:{
-        duration: 5000, //弹幕持续显示时间，单位是毫秒（最低为5000毫秒）
+        //弹幕持续显示时间，单位是毫秒（最低为5000毫秒）
+        duration: 5000,
         style:{
           color:'#ffffff',
           padding:'5px 11px'
@@ -105,8 +106,8 @@ export default {
       this.player = new Player({
         id:'ev-player',
         url:videoUrl,
-        width:'800px',
-        height:'450px',
+        // 开启流体布局
+        fluid: true,
         plugins:[Danmu],
         danmu:{
           comments:this.danmus
@@ -307,15 +308,14 @@ export default {
             </span>
           </div>
         </div>
-<!--        播放器页面站位DOM-->
+<!--西瓜播放器页面站位DOM-->
         <div id="ev-player"></div>
-
         <div class="danmu-bar">
-<!--          数据统计-->
+<!--数据统计-->
           <div class="danmu-bar-video-info">
             {{onWatching}}人正在看，已装填{{danmuCount}}条弹幕
           </div>
-<!--          弹幕操作-->
+<!--弹幕操作-->
           <div class="danmu-bar-operation">
             <div class="danmu-bar-sender">
               <input class="danmu-bar-sender-input" v-model="danmuText"
@@ -324,34 +324,31 @@ export default {
               <el-button type="primary" @click="sendDanmu">发送</el-button>
             </div>
           </div>
-
         </div>
 
-        <!--          点赞、投币、收藏-->
+<!--点赞、投币、收藏-->
         <div class="video-tools-bar">
           <div class="video-tools-bar-left">
-            <!--              点赞-->
+<!--点赞-->
             <div class="like-coin-collect">
               <img :src="likeIcon" @click="addOrDeleteVideoLike" alt="">
               <div>{{likeCount}}</div>
             </div>
-            <!--              收藏-->
+<!--收藏-->
             <div class="like-coin-collect">
               <img :src="collectIcon" @click="addOrDeleteVideoCollection" alt="">
               <div>{{collectCount}}</div>
             </div>
-
           </div>
-
         </div>
 
-<!--        视频描述和视频标签-->
+<!--视频描述和视频标签-->
         <div class="left-container-under-player">
-<!--          视频描述-->
+<!--视频描述-->
           <div class="video-detail-description">
             {{videoDetail.description}}
           </div>
-<!--          视频标签-->
+<!--视频标签-->
           <div class="video-detail-tags">
             <el-tag type="info" style="margin-right: 20px; font-size: 16px"
               v-for="tag in videoDetail.videoTagList" :key="tag.tagId">
@@ -364,7 +361,7 @@ export default {
 
       </div>
       <div class="right-container">
-<!--        视频投稿的up主信息-->
+<!--视频投稿的up主信息-->
         <div class="up-info-container">
           <div class="up-avatar">
             <img :src="videoUpInfo.avatar" alt="">
@@ -392,7 +389,7 @@ export default {
         </div>
 
         <div>
-          <img src="@/assets/alice.gif" alt="My Animation">
+          <img src="@/assets/alice.gif" alt="My Animation" style="width: 60%; height: auto;">
         </div>
 
       </div>
@@ -408,6 +405,7 @@ export default {
   .left-container{
     display: flex;
     flex-direction: column;
+    width: 900px;
 
     .video-info-container{
       display: flex;
@@ -435,7 +433,6 @@ export default {
             margin-right: 5px;
           }
         }
-
       }
     }
 
@@ -476,11 +473,8 @@ export default {
             padding: 0 5px;
             width: 100%;
           }
-
         }
-
       }
-
     }
 
     .video-tools-bar{
@@ -501,7 +495,6 @@ export default {
             margin-right: 10px;
             cursor: pointer;
           }
-
         }
       }
     }
@@ -512,7 +505,6 @@ export default {
         max-width: 800px;
         margin: 18px 0;
       }
-
     }
   }
 
@@ -540,7 +532,128 @@ export default {
       }
     }
   }
+}
+// 手机端样式，适用于宽度小于或等于1080px的屏幕
+@media (max-width: 1080px) {
+  .video-detail-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+    .left-container{
+      width: 100%;
 
+      .video-info-container{
+        width: 100%;
+        margin: 0 auto;
+
+        .video-info-title{
+          font-size: 20px;
+          margin-bottom: 5px;
+        }
+        .video-info-count{
+          font-size: 12px;
+          color: gray;
+          display: flex;
+          flex-wrap: wrap;
+          span {
+            margin-right: 15px;
+            img {
+              height: 20px;
+              width: 20px;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+
+      .danmu-bar{
+        width: 100%;
+        margin: 0 auto;
+
+        .danmu-bar-video-info{
+          width: 100%;
+        }
+
+        .danmu-bar-operation{
+          height: 40px;
+          border-radius: 8px;
+          background: #f4f4f4;
+          flex-direction: column;
+
+          .danmu-bar-sender{
+            width: 100%;
+            border-radius: 8px;
+
+            .danmu-bar-sender-input{
+              outline: none;
+              background: none;
+              border: 0;
+              color: #212121;
+              height: 28px;
+              line-height: 28px;
+              min-width: 100px;
+              padding: 0 5px;
+              width: 100%;
+              font-size: 10px;
+            }
+          }
+        }
+      }
+
+      .video-tools-bar{
+        margin-top: 10px;
+        display: flex;
+        border-bottom: 1px solid #d5d2d2;
+        .video-tools-bar-left{
+          width: 100%;
+          display: flex;
+          margin-bottom: 10px;
+          .like-coin-collect{
+            display: flex;
+            align-items: center;
+            margin-right: 40px;
+            img{
+              height:30px;
+              width: 30px;
+              margin-right: 10px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .left-container-under-player{
+
+        .video-detail-description{
+          max-width: 800px;
+          margin: 18px 0;
+        }
+      }
+    }
+
+    .right-container{
+      width: 100%;
+      margin-left: 10px;
+
+      .up-info-container{
+        width: 100%;
+        margin: 0 auto;
+        .up-avatar{
+          img{
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+          }
+        }
+        .up-info-right{
+          padding: 20px;
+          .up-info-detail{
+            color: #FB7299;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

@@ -18,18 +18,18 @@ export default {
         },
         {
           id:2,
-          name:'推荐',
-          path:'/'
+          name:'音乐',
+          path:'/MusicPlayer'
         },
         {
           id:3,
-          name:'热门',
-          path:'/'
+          name:'谢网',
+          href: 'http://124.220.10.190:8083/web/'
         },
         {
           id:4,
-          name:'动漫',
-          path:'/'
+          name:'登录',
+          path:'/UserLogin'
         }
       ],
       searchTxt:'',
@@ -80,7 +80,6 @@ export default {
         }
       })
     }
-
   },
 
   async mounted() {
@@ -102,7 +101,6 @@ export default {
         this.histories = response1.data.list;
       }
     }
-
   },
 
   computed:{
@@ -115,7 +113,6 @@ export default {
         return require('@/assets/ev.png');
       }
     }
-
   },
 }
 </script>
@@ -126,9 +123,18 @@ export default {
 
     <div class="header-nav-container">
 
-      <div class="left-entry">
+<!--  <div class="left-entry">
         <div v-for="entry in entries" :key="entry.id">
           <span @click="jumpToPath(entry.path)">{{entry.name}}</span>
+        </div>
+      </div>-->
+
+      <div class="left-entry">
+        <div v-for="entry in entries" :key="entry.id">
+          <!-- 如果有 href 属性，则使用 <a> 标签 -->
+          <a v-if="entry.href" :href="entry.href" target="_blank" class="entry-link">{{ entry.name }}</a>
+          <!-- 如果有 path 属性，则使用点击事件进行内部跳转 -->
+          <span v-else @click="jumpToPath(entry.path)">{{ entry.name }}</span>
         </div>
       </div>
 
@@ -137,7 +143,7 @@ export default {
           <div class="nav-search-content">
             <input class="nav-search-input"
                     type="text" autocomplete="off"
-                    maxlength="100" placeholder="请输入您想观看的视频内容"
+                    maxlength="100" placeholder="请输入视频内容"
                     v-model="searchTxt">
           </div>
           <div class="nav-search-btn">
@@ -145,7 +151,6 @@ export default {
                        circle size="mini" @click="searchContents"></el-button>
           </div>
         </form>
-
       </div>
 
       <div class="right-entry">
@@ -153,7 +158,7 @@ export default {
         <div v-if="isUserLoggedIn" class="user-center">
           <el-dropdown>
             <span class="el-dropdown-link">
-              <img style="height: 50px; width: 50px; border-radius: 50%"
+              <img style="height: 50px; width: 50px; border-radius: 50%; object-fit: contain;"
                    :src="avatar" alt="">
             </span>
             <el-dropdown-menu slot="dropdown">
@@ -194,7 +199,7 @@ export default {
             </el-dialog>
           </div>
         </div>
-<!--        动态-->
+<!--动态-->
         <div class="right-entry-moments">
           <el-popover
               placement="top-start"
@@ -209,11 +214,11 @@ export default {
                   </div>
                   <div class="moment-list-item-img" v-if="moment.type==='1' " >
                     <img :src="moment.content.contentDetail.img" alt=""
-                         style="height: 60px; width: 100px; border-radius: 5px; margin-right: 5px">
+                         style="height: 60px; width: 100px; border-radius: 5px; margin-right: 5px; object-fit: contain;">
                   </div>
                   <div class="moment-list-item-video" v-if="moment.type==='0' " style="display: flex">
                     <img :src="moment.content.contentDetail.thumbnail" alt=""
-                         style="height: 60px; width: 100px; border-radius: 5px; margin-right: 5px">
+                         style="height: 60px; width: 100px; border-radius: 5px; margin-right: 5px; object-fit: contain;">
                     <div class="moment-list-item-video-detail" style="display: flex; flex-direction: column; justify-content: space-between">
                       <div class="moment-list-item-video-detail-title">
                         {{moment.content.contentDetail.title}}
@@ -251,7 +256,7 @@ export default {
           </el-popover>
           <span style="color: white; margin-top: 5px">动态</span>
         </div>
-<!--        历史-->
+<!--历史-->
         <div class="right-entry-content">
           <el-popover
               placement="top-start"
@@ -263,7 +268,7 @@ export default {
                    style="background-color: #f1f1f1; margin-bottom: 10px; border-radius: 5px; padding: 5px">
                 <div class="history-list-item-video" style="display: flex">
                   <img :src="history.thumbnail" alt=""
-                       style="height: 60px; width: 100px; border-radius: 5px; margin-right: 5px">
+                       style="height: 60px; width: 100px; border-radius: 5px; margin-right: 5px; object-fit: contain;">
                   <div class="history-list-item-video-detail"
                        style="display: flex; flex-direction: column; justify-content: space-between">
                     <div class="history-list-item-video-detail-title">
@@ -308,14 +313,12 @@ export default {
           <span style="color: white; margin-top: 5px">发布</span>
         </div>
       </div>
-
     </div>
 
     <div class="header-banner-container">
       <img class="banner"
           :src="require('@/assets/header/header-banner.png')" alt="">
     </div>
-
   </div>
 
 </template>
@@ -333,21 +336,31 @@ export default {
     justify-content: space-between;
 
     .left-entry{
+      width: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-left: 40px;
+      justify-content: flex-start;
+      margin-left: 30px;
+      min-width: 100px;
+      max-width: 208px;
       span{
         margin-right: 20px;
         color: white;
         font-weight: bolder;
         cursor: pointer;
       }
+      .entry-link {
+        margin-right: 20px;
+        color: white;
+        font-weight: bolder;
+        cursor: pointer;
+        text-decoration: none;
+      }
     }
 
     .center-search-bar{
       flex: 1 auto;
-      min-width: 200px;
+      min-width: 10px;
       max-width: 400px;
       .nav-search-form{
         display: flex;
@@ -386,20 +399,21 @@ export default {
           border-radius: 6px;
           cursor: pointer;
         }
-
-
       }
-
     }
 
     .right-entry{
+      width: 100%;
       display: flex;
       flex-direction: row;
       align-items: center;
+      justify-content: flex-end;
       padding: 10px;
+      min-width: 100px;
+      max-width: 258px;
 
       .user-center{
-        margin-right: 10px;
+        margin-right: 30px;
         .login-button{
           color: #000000;
           width: 50px;
@@ -429,7 +443,6 @@ export default {
         align-items: center;
       }
     }
-
   }
 
   .header-banner-container{
@@ -437,7 +450,135 @@ export default {
       width: 100%;
     }
   }
-
 }
 
+//手机端样式，适用于宽度小于或等于1080px的屏幕
+@media (max-width: 1080px) {
+  .ev-header{
+
+    .header-nav-container{
+
+      position: absolute;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .left-entry{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 0;
+        min-width: 30px;
+        max-width: 80px;
+        span{
+          margin-right: 0;
+          color: white;
+          font-weight: bolder;
+          cursor: pointer;
+        }
+        .entry-link {
+          margin-right: 0;
+          color: white;
+          font-weight: bolder;
+          cursor: pointer;
+          text-decoration: none;
+        }
+      }
+
+      .center-search-bar{
+        flex: 1;
+        margin-left: -65px;
+        min-width: 20px;
+        max-width: 100px;
+        .nav-search-form{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 4px 0 4px;
+          height: 38px;
+          background-color: white;
+          border-radius: 8px;
+          opacity: 0.8;
+          .nav-search-content{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 36px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            .nav-search-input{
+              width: 100%;
+              font-size: 8px;
+              padding-right: 5px;
+              background-color: transparent;
+              border: none;
+              box-shadow: none;
+              outline: none;
+            }
+          }
+
+          .nav-search-btn{
+            margin: 0;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .right-entry{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0;
+        min-width: 50px;
+        max-width: 100px;
+
+
+        .user-center{
+          margin-right: 0;
+          .login-button{
+            color: #000000;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-weight: bold;
+            background-color: #FFC0CB;
+            font-family: "Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+          }
+          .transparent-dialog {
+            background-color: transparent!important;
+            .el-dialog__header{
+              background-color: transparent!important;
+            }
+          }
+        }
+        .right-entry-moments{
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .right-entry-content{
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+
+    .header-banner-container{
+      .banner{
+        width: 100%;
+      }
+    }
+  }
+}
 </style>

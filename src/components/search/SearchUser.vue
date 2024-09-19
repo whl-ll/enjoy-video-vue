@@ -53,7 +53,6 @@ export default {
       });
       await this.searchUsers();
     }
-
   },
   mounted() {
     this.searchUsers();
@@ -151,9 +150,7 @@ export default {
           color: gray;
         }
       }
-
     }
-
   }
   .page-list-users{
     margin-top: 20px;
@@ -161,5 +158,4 @@ export default {
     justify-content: center;
   }
 }
-
 </style>

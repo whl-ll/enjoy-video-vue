@@ -12,26 +12,31 @@ Element.Dialog.props.lockScroll.default=false;
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '@/vuex/index'
 
+//Vue.js 组件中实现懒加载缩略图，使用 Vue 的第三方库，vue-lazyload。
+import VueLazyload from 'vue-lazyload'
+
 Vue.use(InfiniteLoading);
 
 Vue.use(ElementUI);
 
-/**
- * main.js文件是Vue.js应用程序的入口文件。
- * 它主要负责初始化Vue实例，并将根组件挂载到HTML文档中的某个元素上。
- *
- * Vue.config.productionTip = false是Vue.js 中的一个配置选项，
- * 用于控制是否在控制台中显示生产提示。当设置为 false 时，它会禁用 Vue.js 开发模式下的警告。
- * 实际生产环境一般会关闭这个选项，减少打包后的包体积，提升代码运行效率。
- */
 Vue.config.productionTip = false
+
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  // 错误时显示的图片
+  error: require('@/assets/main.jpg'),
+  // 加载时显示的图片
+  loading: require('@/assets/main.jpg'),
+  attempt: 1
+})
+
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = 'https://fonts.googleapis.com/icon?family=Material+Icons';
+document.head.appendChild(link);
 
 new Vue({
   router,
   store,
-  /**
-   * render返回一个完整的虚拟DOM树。
-   * createElement通常在render中使用，用于创建虚拟DOM树的元素。
-   */
   render: h => h(App),
 }).$mount('#app')

@@ -67,6 +67,4 @@ export default {
     async getUserCenterFollowingGroups () {
         return await httpRequest.get('/user-center-following-groups');
     }
-
-
 }

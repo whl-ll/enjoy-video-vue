@@ -58,7 +58,6 @@ export default {
       });
       await this.searchVideos();
     }
-
   },
   mounted() {
     this.searchVideos();
@@ -176,13 +175,9 @@ export default {
                 margin-right: 5px;
               }
             }
-
           }
-
         }
-
       }
-
     }
   }
   .page-list-videos{
@@ -191,5 +186,4 @@ export default {
     justify-content: center;
   }
 }
-
 </style>

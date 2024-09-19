@@ -136,7 +136,6 @@ export default {
       window.alert('视频上传成功')
       await this.$router.push('/')
     }
-
   }
 }
 </script>
@@ -149,10 +148,10 @@ export default {
     <div v-else>拖拽到此处也可上传</div>
     <input type="file" ref="fileInput" @change="setVideo"
            style="display: none" accept="video/*">
-    <el-button @click="selectVideo" class="video-operation-btn" type="primary">
+    <el-button @click="selectVideo" class="video-operation-btn" type="primary" style="background-color: #FFC0CB; color: black">
       选择视频
     </el-button>
-    <el-button @click="uploadVideo" class="video-operation-btn" type="primary">
+    <el-button @click="uploadVideo" class="video-operation-btn" type="primary" style="background-color: #FFC0CB; color: black">
       上传视频
     </el-button>
     <div v-if="uploadProgress > 0" class="upload-progress">
@@ -220,7 +219,7 @@ export default {
     </div>
     <div class="submit-video">
       <el-button @click="postVideo" type="primary"
-                 style="margin: 40px; width: 200px;">
+                 style="margin: 40px; width: 200px; background-color: #FFC0CB; color: black">
         立即投稿
       </el-button>
     </div>
@@ -286,7 +285,7 @@ export default {
     .video-title{
       display: flex;
       justify-content: space-between;
-      margin-top: 40px;
+      margin-top: 20px;
 
       .video-title-text{
         width: 100px;
@@ -405,7 +404,188 @@ export default {
       display: flex;
       justify-content: center;
     }
+  }
+}
 
+// 手机端样式，适用于宽度小于或等于1080px的屏幕
+@media (max-width: 1080px) {
+  .post-video-container{
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 20px;
+    .post-video-body{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      position: relative;
+      color: #999;
+      font-size: 14px;
+      border: 2px dashed #ccc;
+      padding: 30px;
+      .el-icon-upload2{
+        font-size: 30px;
+      }
+      .video-operation-btn{
+        margin-top: 20px;
+        font-size: 16px;
+        margin-left:0;
+      }
+      .upload-progress{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 20px;
+        font-size: 16px;
+        margin-left:0;
+      }
+    }
+
+    .video-form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .video-thumbnail{
+        display: flex;
+        .video-thumbnail-text{
+          width: 100px;
+        }
+        .video-thumbnail-img{
+          img{
+            width: 320px;
+            height: 180px;
+            border-radius: 4px;
+          }
+        }
+      }
+
+      .video-title{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        .video-title-text{
+          width: 100px;
+        }
+
+        .video-title-input{
+          border-radius: 4px;
+          padding: 0 12px;
+          border: 1px solid #ccd0d7;
+          min-width: 200px;
+          width: 100%;
+          .input-val{
+            width: 100%;
+            border: none;
+            color: #222;
+            line-height: 22px;
+            height: 22px;
+            outline: 0;
+            border: 0;
+            background-color: transparent;
+            font-size: 16px;
+          }
+        }
+      }
+
+      .video-type{
+        display: flex;
+        margin-top: 20px;
+        align-items: center;
+
+        .video-type-text{
+          width: 100px;
+        }
+        .video-type-selector{
+          display: flex;
+        }
+      }
+
+      .video-area{
+        display: flex;
+        margin-top: 20px;
+        align-items: center;
+
+        .video-area-text{
+          width: 100px;
+        }
+        .video-area-selector{
+          display: flex;
+        }
+      }
+
+      .video-tag{
+        display: flex;
+        margin-top: 20px;
+        flex-direction: column;
+
+        .video-tag-container{
+          display: flex;
+          align-items: center;
+          .video-tag-text{
+            width: 100px;
+          }
+          .video-tag-input{
+            border-radius: 4px;
+            padding: 0 12px;
+            border: 1px solid #ccd0d7;
+            min-width: 200px;
+            width: 100%;
+            .input-val{
+              width: 100%;
+              border: none;
+              color: #222;
+              line-height: 22px;
+              height: 22px;
+              outline: 0;
+              border: 0;
+              background-color: transparent;
+              font-size: 16px;
+            }
+          }
+        }
+        .video-tag-show{
+        }
+      }
+
+      .video-description{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        .video-description-text{
+          width: 100px;
+        }
+        .video-description-input{
+          border-radius: 4px;
+          padding: 0 12px;
+          border: 1px solid #ccd0d7;
+          min-width: 200px;
+          width: 100%;
+          height: 60px;
+          .input-val{
+            width: 100%;
+            border: none;
+            color: #222;
+            line-height: 22px;
+            height: 22px;
+            outline: 0;
+            border: 0;
+            background-color: transparent;
+            font-size: 16px;
+          }
+        }
+      }
+
+      .submit-video{
+        display: flex;
+        justify-content: center;
+      }
+    }
   }
 }
 </style>

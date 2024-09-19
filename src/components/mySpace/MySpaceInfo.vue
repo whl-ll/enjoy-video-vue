@@ -120,7 +120,6 @@ export default {
     <el-button type="primary" style="width: 140px;"
     @click="updateUserInfo">保存</el-button>
   </div>
-
 </div>
 </template>
 
@@ -148,7 +147,6 @@ export default {
       font-size: 18px;
       margin-right: 20px;
     }
-
   }
 
   .border-line{
@@ -163,6 +161,4 @@ export default {
     margin-bottom: 40px;
   }
 }
-
-
 </style>

@@ -140,7 +140,4 @@ export default {
     async getVideoRecommendations(params){
         return await httpRequest.get('/video-recommendations', {params});
     },
-
-
-
 }

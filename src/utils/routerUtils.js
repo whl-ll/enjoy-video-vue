@@ -1,4 +1,3 @@
-
 export default {
 
     methods: {
@@ -25,7 +24,5 @@ export default {
                 this.$router.push('/videoDetail')
             }
         },
-
     }
-
 }

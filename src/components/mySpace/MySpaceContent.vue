@@ -5,7 +5,6 @@
   </div>
 </template>
 
-
 <script>
 import MySpaceNavigator from "@/components/mySpace/MySpaceNavigator.vue";
 import userUtils from "@/utils/userUtils";
@@ -24,7 +23,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped lang="less">
 

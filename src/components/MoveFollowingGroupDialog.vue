@@ -22,7 +22,6 @@ export default {
       location.reload();
     }
   }
-
 }
 </script>
 

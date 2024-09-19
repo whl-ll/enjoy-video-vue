@@ -61,7 +61,6 @@ export default {
         this.$store.state.userInfo.avatar = avatar;
       }
     },
-
   },
 
   computed:{
@@ -105,7 +104,6 @@ export default {
         return unknown;
       }
     }
-
   }
 }
 </script>
@@ -116,9 +114,9 @@ export default {
     <CommonHeader/>
 
     <div class="my-space-content-container">
-      <!--    用户信息-->
+<!--用户信息-->
       <div class="my-space-userinfo-container">
-<!--        头像-->
+<!--头像-->
         <div class="my-space-avatar" @click="selectAvatar">
           <img :src="userInfo.avatar" alt="">
           <input type="file" ref="fileInput" style="display: none"
@@ -139,7 +137,7 @@ export default {
         </div>
       </div>
 
-<!--      导航栏-->
+<!--导航栏-->
       <div class="my-space-navigator">
         <el-menu :default-active="activeIndex"
                  class="navigator-menu" mode="horizontal">
@@ -152,15 +150,12 @@ export default {
         </el-menu>
       </div>
     </div>
-
   </div>
-
 </template>
 
 <style scoped lang="less">
 
 .my-space-container{
-
 
   .my-space-content-container{
     margin-left: 20%;
@@ -180,6 +175,7 @@ export default {
           height:80px;
           width: 80px;
           border-radius: 2px;
+          object-fit: contain;
         }
       }
 
@@ -204,7 +200,6 @@ export default {
               width: 30px;
               border-radius: 2px;
             }
-
           }
         }
 
@@ -213,9 +208,6 @@ export default {
           font-size: 18px;
         }
       }
-
-
-
     }
 
     .my-space-navigator{
@@ -227,16 +219,9 @@ export default {
         .navigator-menu-item{
           font-size: 18px;
           margin-right: 20px;
-
         }
       }
     }
-
-
   }
-
-
-
 }
-
 </style>

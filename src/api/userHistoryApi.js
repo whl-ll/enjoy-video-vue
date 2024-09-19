@@ -6,5 +6,4 @@ export default {
     async pagListUserVideoHistory(params){
         return await httpRequest.get('/user-video-histories', {params});
     }
-
 }

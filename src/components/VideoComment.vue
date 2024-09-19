@@ -20,14 +20,16 @@ export default {
       currentCommentPage:1,
       totalComments:0,
       replyTxt:''
-
     }
-
   },
 
   methods:{
 
     async addVideoComment(){
+      if (!this.comment.trim()) {
+        this.$message.error("评论内容不能为空！");
+        return;
+      }
       let params = {
         videoId:this.$route.query.videoId,
         comment:this.comment
@@ -75,6 +77,10 @@ export default {
     },
 
     async addReplyComment(replyCommentId){
+      if (!this.replyTxt.trim()) {
+        this.$message.error("回复内容不能为空！");
+        return;
+      }
       let params = {
         videoId:this.$route.query.videoId,
         comment:this.replyTxt,
@@ -104,7 +110,7 @@ export default {
 
   <div class="comment-container">
 
-<!--    评论header-->
+<!--评论header-->
     <div class="comment-header">
       <div class="comment-header-title">
         评论
@@ -114,20 +120,16 @@ export default {
       </div>
       <div class="comment-header-sort">
         <div class="hot-sort">
-
         </div>
         <div class="part-symbol">
-
         </div>
         <div class="time-sort">
-
         </div>
       </div>
-
     </div>
 
     <div class="comment-body">
-<!--      用户没有登录的情况-->
+<!--用户没有登录的情况-->
       <div v-if="!this.isUserLoggedIn" class="comment-body-before-login">
         <div class="comment-send-area-before-login">
           <div class="user-avatar-before-login">
@@ -147,19 +149,17 @@ export default {
             </el-dialog>
           </div>
         </div>
-
-
       </div>
 
-<!--      用户登录的情况-->
+<!--用户登录的情况-->
       <div v-else class="comment-body-login">
-<!--        输入评论区 and 发送-->
+<!--输入评论区 and 发送-->
         <div class="comment-send-area">
           <div class="user-avatar">
             <img :src="avatar" alt="">
           </div>
           <div class="comment-input">
-            <textarea class="comment-input-textarea" placeholder="天青色等烟雨，评论区在等你"
+            <textarea class="comment-input-textarea" placeholder="请文明评论哦！"
                       v-model="comment">
             </textarea>
           </div>
@@ -170,7 +170,7 @@ export default {
           </div>
         </div>
 
-<!--        查看评论区-->
+<!--查看评论区-->
         <div v-if="videoCommentList.length > 0">
           <div class="comment-root-reply-container"
                v-for="rootComment in videoCommentList" :key="rootComment.id">
@@ -178,7 +178,7 @@ export default {
               <img :src="rootComment.userInfo.avatar" alt="">
             </div>
             <div class="total-reply-content-container">
-<!--              一级评论-->
+<!--一级评论-->
               <div class="root-reply-content-container">
                 <div class="root-reply-username">
                   {{rootComment.userInfo.nick}}
@@ -199,7 +199,7 @@ export default {
                   </div>
                 </div>
               </div>
-<!--              二级结构-->
+<!--二级结构-->
               <div class="sub-reply-content-container"
                    v-for="childComment in rootComment.childList" :key="childComment.id">
                 <div class="sub-reply-userInfo">
@@ -231,7 +231,7 @@ export default {
                   </div>
                 </div>
               </div>
-<!--              回复某一个用户的评论区域-->
+<!--回复某一个用户的评论区域-->
               <div class="reply-comment-area"
                    v-if="currentCommentId === rootComment.id
                    || rootComment.childList.some(item => item.id === currentCommentId)">
@@ -253,14 +253,11 @@ export default {
               </div>
             </div>
           </div>
-
         </div>
       </div>
       <infinite-loading :infinite-id="infiniteId" @infinite="getVideoComments">
       </infinite-loading>
-
     </div>
-
   </div>
 
 </template>
@@ -340,7 +337,6 @@ export default {
             line-height: 38px;
             resize: none;
             outline: none;
-
           }
         }
 
@@ -400,11 +396,8 @@ export default {
                 .reply-btn{
                   cursor: pointer;
                 }
-
               }
-
             }
-
           }
           .sub-reply-content-container{
             display: flex;
@@ -451,7 +444,6 @@ export default {
                 }
               }
             }
-
           }
           .reply-comment-area{
             display: flex;
@@ -484,7 +476,6 @@ export default {
                 line-height: 38px;
                 resize: none;
                 outline: none;
-
               }
             }
 
@@ -528,7 +519,6 @@ export default {
             line-height: 38px;
             resize: none;
             outline: none;
-
           }
         }
 
@@ -538,10 +528,280 @@ export default {
           flex: 1;
         }
       }
-
     }
   }
-
 }
 
+// 手机端样式，适用于宽度小于或等于1080px的屏幕
+@media (max-width: 1080px) {
+  .comment-container{
+    margin-left: 20px;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-direction: column;
+
+    .comment-header{
+      display: flex;
+
+      .comment-header-title{
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        font-size: 24px;
+        font-weight: 500;
+        .comment-count{
+          font-size: 14px;
+          margin: 0 36px 0 6px;
+          font-weight: 400;
+          color: #a8a6a6;
+        }
+      }
+
+      .comment-header-sort{
+        display: flex;
+        align-items: center;
+
+        .hot-sort{
+          cursor: pointer;
+        }
+
+        .time-sort{
+          cursor: pointer;
+        }
+
+        .part-symbol{
+
+        }
+      }
+    }
+
+    .comment-body{
+
+      .comment-body-login{
+        display: flex;
+        flex-direction: column;
+
+        .comment-send-area{
+          display: flex;
+          align-items: center;
+          margin-top: 20px;
+
+          .user-avatar{
+            display: flex;
+            flex: 1;
+            img{
+              height: 70px;
+              width: 70px;
+            }
+          }
+
+          .comment-input{
+            flex:6;
+            height: 50px;
+            .comment-input-textarea{
+              height: 100%;
+              width: 100%;
+              border: none;
+              border-radius: 6px;
+              background-color: #e7e7e7;
+              line-height: 38px;
+              resize: none;
+              outline: none;
+
+            }
+          }
+
+          .comment-button{
+            display: flex;
+            justify-content: flex-end;
+            flex: 1;
+          }
+        }
+
+        .comment-root-reply-container{
+          display: flex;
+          margin-top: 20px;
+
+          .root-reply-avatar{
+            margin-right: 20px;
+            img{
+              height:50px;
+              width: 50px;
+              border-radius: 2px;
+            }
+          }
+
+          .total-reply-content-container{
+            display: flex;
+            flex-direction: column;
+
+            .root-reply-content-container{
+              display: flex;
+              flex-direction: column;
+
+              .root-reply-username{
+                font-size: 14px;
+                font-weight: 500;
+                color: gray;
+                margin-top: 10px;
+                margin-bottom: 4px;
+              }
+
+              .root-reply-content{
+                display: flex;
+                flex-direction: column;
+
+                .root-reply-content-txt{
+                  font-size: 16px;
+                }
+
+                .root-reply-content-operation{
+                  display: flex;
+                  align-items: center;
+                  font-size: 13px;
+                  color: gray;
+                  margin-top: 4px;
+                  .reply-time{
+                    margin-right: 20px;
+                  }
+                  .reply-btn{
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+            .sub-reply-content-container{
+              display: flex;
+              align-items: center;
+              font-size: 14px;
+
+              .sub-reply-userInfo{
+                display: flex;
+                align-items: center;
+
+                .sub-reply-avatar{
+                  margin-right: 20px;
+                  img{
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 2px;
+                  }
+                }
+              }
+              .sub-reply-content{
+                display: flex;
+                flex-direction: column;
+                .sub-reply-username{
+                  font-size: 14px;
+                  font-weight: 500;
+                  color: gray;
+                  margin-top: 10px;
+                  margin-bottom: 4px;
+                }
+                .sub-reply-wrap{
+                  display: flex;
+                }
+                .sub-reply-content-operation{
+                  display: flex;
+                  align-items: center;
+                  font-size: 13px;
+                  color: gray;
+                  margin-top: 4px;
+                  .reply-time{
+                    margin-right: 20px;
+                  }
+                  .reply-btn{
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+            .reply-comment-area{
+              display: flex;
+              align-items: center;
+              margin-top: 10px;
+
+              .reply-user-avatar{
+                flex: 1;
+                margin-right: 6px;
+                img{
+                  height: 50px;
+                  width: 50px;
+                }
+              }
+
+              .reply-comment-input{
+                flex:3;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                margin-right: 6px;
+
+                .comment-input-textarea{
+                  font-size: 14px;
+                  height: 100%;
+                  width: 100%;
+                  border: none;
+                  border-radius: 6px;
+                  background-color: #e7e7e7;
+                  line-height: 38px;
+                  resize: none;
+                  outline: none;
+                }
+              }
+
+              .reply-comment-button{
+                display: flex;
+                justify-content: flex-end;
+                flex: 1;
+              }
+            }
+          }
+        }
+      }
+
+      .comment-body-before-login{
+        display: flex;
+        flex-direction: column;
+
+        .comment-send-area-before-login{
+          display: flex;
+          align-items: center;
+          margin-top: 20px;
+
+          .user-avatar-before-login{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            img{
+              height: 70px;
+              width: 70px;
+            }
+          }
+          .comment-input-before-login{
+            flex:6;
+            height: 50px;
+            .comment-input-textarea{
+              height: 100%;
+              width: 100%;
+              border: none;
+              border-radius: 6px;
+              background-color: #e7e7e7;
+              line-height: 38px;
+              resize: none;
+              outline: none;
+            }
+          }
+
+          .comment-button-before-login{
+            display: flex;
+            justify-content: flex-end;
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

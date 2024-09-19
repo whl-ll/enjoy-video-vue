@@ -53,7 +53,6 @@ export default {
         };
         reader.readAsDataURL(file);
       }
-      // 处理文件上传逻辑，例如显示预览图等
     },
 
     async addUserMoments(){
@@ -103,7 +102,8 @@ export default {
       if(response.data){
         const {list:moments} = response.data;
         this.moments = moments;
-        this.currentPage++; // 递增当前页码
+        // 递增当前页码
+        this.currentPage++;
       }
     },
 
@@ -122,8 +122,10 @@ export default {
             return;
           }
           this.moments = this.moments.concat(moments);
-          this.currentPage++; // 递增当前页码
-          $state.loaded(); // 标记加载完成
+          // 递增当前页码
+          this.currentPage++;
+          // 标记加载完成
+          $state.loaded();
         }
       }).catch(error => {
         // 捕获异常
@@ -131,7 +133,6 @@ export default {
         $state.complete();
       });
     }
-
   },
 
   mounted() {
@@ -148,7 +149,7 @@ export default {
     <CommonHeader/>
 
     <div class="user-moments-container">
-      <!--      发布动态-->
+<!--发布动态-->
       <div class="user-moments-post">
         <input placeholder="有什么想和大家分享的？"
                class="user-moments-post-input" v-model="postTxt">
@@ -169,7 +170,7 @@ export default {
           <el-button type="primary" @click="addUserMoments">发布</el-button>
         </div>
       </div>
-      <!--      导航栏-->
+<!--导航栏-->
       <div class="user-moments-nav">
         <el-menu :default-active.sync="activeIndex"
                  class="user-moments-nav-menu" mode="horizontal">
@@ -181,7 +182,7 @@ export default {
           </el-menu-item>
         </el-menu>
       </div>
-      <!--      动态列表-->
+<!--动态列表-->
       <div class="user-moments-list">
         <div class="user-moments-list-item" v-for="(moment, index) in moments"
              :key="index">
@@ -203,7 +204,7 @@ export default {
             <div class="user-moments-list-item-moment-img" v-if="moment.type==='1' ">
               <img :src="moment.content.contentDetail.img" alt="">
               <div style="float:right;">
-                <img src="@/assets/Exia.gif" alt="My Animation">
+                <img src="@/assets/Maxwell.gif" alt="My Animation">
               </div>
             </div>
             <div class="user-moments-list-item-moment-video" v-if="moment.type==='0' ">
@@ -231,7 +232,7 @@ export default {
                   </div>
                 </div>
               </div>
-              <div style="float:right;">
+              <div style="display: block; margin-left: auto; margin-right: 0;">
                 <img src="@/assets/alice.gif" alt="My Animation">
               </div>
             </div>
@@ -293,7 +294,6 @@ export default {
           width: 20px;
         }
       }
-
     }
   }
 
@@ -301,7 +301,6 @@ export default {
     width: 50%;
     background-color: white;
     border-radius: 5px;
-
 
     .user-moments-nav-menu{
       padding: 10px;
@@ -348,7 +347,6 @@ export default {
         .user-moments-list-item-moment-txt{
           font-size: 18px;
           margin-bottom: 10px;
-
         }
 
         .user-moments-list-item-moment-img{
@@ -408,16 +406,10 @@ export default {
                 }
               }
             }
-
           }
-
-
         }
       }
-
     }
   }
-
 }
-
 </style>

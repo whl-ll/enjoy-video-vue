@@ -21,7 +21,6 @@ export default {
       showMoveCollectionDialog:false,
       moveVideoId:null,
       moveVideoGroupId:null
-
     }
   },
 
@@ -70,9 +69,7 @@ export default {
       this.moveVideoId = videoId;
       this.moveVideoGroupId = moveVideoGroupId;
       this.showMoveCollectionDialog = true;
-
     }
-
   },
 
   mounted() {
@@ -242,7 +239,6 @@ export default {
           }
         }
       }
-
     }
 
     .my-space-collection-content{
@@ -264,6 +260,7 @@ export default {
                 width: 240px;
                 height: 135px;
                 border-radius: 5px;
+                object-fit: contain;
               }
             }
 
@@ -302,9 +299,6 @@ export default {
               }
             }
           }
-
-
-
         }
 
         .page-list-collections{
@@ -312,14 +306,8 @@ export default {
           align-items: center;
           justify-content: center;
         }
-
       }
-
     }
-
-
   }
-
 }
-
 </style>

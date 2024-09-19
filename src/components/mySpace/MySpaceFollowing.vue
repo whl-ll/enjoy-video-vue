@@ -106,7 +106,6 @@ export default {
       this.currentFollowingId = currentFollowingId;
       this.showMoveFollowingGroupDialog = true;
     }
-
   },
 
   mounted() {
@@ -122,9 +121,9 @@ export default {
 <template>
 <div class="my-space-following">
   <div class="my-space-following-container">
-<!--    左侧导航栏-->
+<!--左侧导航栏-->
     <div class="my-space-nav">
-<!--      我的关注-->
+<!--我的关注-->
       <div class="title">
         <div class="title-txt">
           我的关注
@@ -149,7 +148,7 @@ export default {
           </span>
         </el-dialog>
       </div>
-<!--      导航菜单-->
+<!--导航菜单-->
       <div class="my-space-menu">
         <div class="my-space-menu-item"
              @click="pageListUserCenterFollowings(null)">
@@ -172,7 +171,7 @@ export default {
           </div>
         </div>
       </div>
-<!--      我的粉丝-->
+<!--我的粉丝-->
       <div class="title">
         <div class="title-txt">
           我的粉丝
@@ -192,12 +191,12 @@ export default {
 
 <!--右侧用户关注内容-->
     <div class="my-space-content">
-<!--      关注-->
+<!--关注-->
       <div class="my-space-content-following" v-if="showFollowing">
         <div class="my-space-content-list">
           <div class="list-item" v-for="userFollowing in userFollowings"
                :key="userFollowing.id">
-<!--            用户信息-->
+<!--用户信息-->
             <div class="item-infos">
               <div class="avatar">
                 <img :src=userFollowing.userInfo.avatar class="image" alt="">
@@ -211,7 +210,7 @@ export default {
                 </div>
               </div>
             </div>
-<!--            关注相关操作-->
+<!--关注相关操作-->
             <div class="operation">
               <el-dropdown>
                 <el-button type="primary">
@@ -243,7 +242,7 @@ export default {
             </div>
           </div>
         </div>
-<!--        分页组件-->
+<!--分页组件-->
         <div class="page-list-content-detail">
           <el-pagination
               background
@@ -255,12 +254,12 @@ export default {
           </el-pagination>
         </div>
       </div>
-<!--      粉丝-->
+<!--粉丝-->
       <div class="my-space-content-fans" v-else>
         <div class="my-space-content-list">
           <div class="list-item" v-for="userFan in userFans"
                :key="userFan.id">
-<!--            用户信息-->
+<!--用户信息-->
             <div class="item-infos">
               <div class="avatar">
                 <img :src=userFan.userInfo.avatar class="image" alt="">
@@ -274,7 +273,7 @@ export default {
                 </div>
               </div>
             </div>
-<!--            相关粉丝操作-->
+<!--相关粉丝操作-->
             <div class="userFollowing-operation">
               <el-dropdown v-if="visible(userFan.userId)">
                 <el-button type="primary">
@@ -360,13 +359,11 @@ export default {
             justify-content: center;
             align-items: center;
           }
-
         }
 
         .my-space-menu{
           cursor: pointer;
           border-bottom: lightgray solid 1px;
-
 
           .my-space-menu-item{
             font-size: 18px;
@@ -379,7 +376,6 @@ export default {
             }
           }
         }
-
       }
 
       .my-space-content{
@@ -407,6 +403,7 @@ export default {
                   height: 80px;
                   width: 80px;
                   border-radius: 2px;
+                  object-fit: contain;
                 }
               }
               .description{
@@ -424,9 +421,7 @@ export default {
                 }
               }
             }
-
           }
-
         }
 
         .page-list-content-detail{
@@ -434,12 +429,7 @@ export default {
           justify-content: center;
           align-items: center;
         }
-
-
       }
     }
-
-
   }
-
 </style>

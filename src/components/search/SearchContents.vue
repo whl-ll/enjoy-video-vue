@@ -38,14 +38,12 @@ export default {
       }
       console.log(this.menuList)
     }
-
   },
 
   mounted() {
     this.searchTxt = this.$route.query.searchTxt;
     this.countBySearchTxt();
   }
-
 }
 </script>
 
@@ -70,7 +68,6 @@ export default {
       <component :is="currentTab"></component>
     </div>
   </div>
-
 </template>
 
 <style scoped lang="less">
@@ -100,7 +97,5 @@ export default {
       }
     }
   }
-
 }
-
 </style>

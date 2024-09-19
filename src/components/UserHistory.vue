@@ -41,7 +41,6 @@ export default {
         $state.complete();
       });
     }
-
   },
 
   mounted() {
@@ -57,12 +56,12 @@ export default {
   <div class="user-history">
     <CommonHeader/>
     <div class="user-history-container">
-<!--      头部区域-->
+<!--头部区域-->
       <div class="history-header">
         <span style="color: white; font-weight: bolder; font-size: 22px">历史记录</span>
 
       </div>
-<!--      历史列表-->
+<!--历史列表-->
       <div class="user-history-list">
         <div class="user-history-list-item" v-for="(history, index) in histories"
              :key="index">
@@ -80,6 +79,36 @@ export default {
               观看时间：{{history.createTime}}
             </div>
           </div>
+          <div style="display: block; margin-left: auto; margin-right: 0;">
+            <img src="@/assets/Neon.gif" alt="My Animation">
+          </div>
+          <div style="display: block; margin-left: auto; margin-right: 0;">
+            <img src="@/assets/Maxwell.gif" alt="My Animation">
+          </div>
+          <div style="display: block; margin-left: auto; margin-right: 0;">
+            <img src="@/assets/Marian.gif" alt="My Animation">
+          </div>
+          <div style="display: block; margin-left: auto; margin-right: 0;">
+            <img src="@/assets/Anis.gif" alt="My Animation">
+          </div>
+          <div style="display: block; margin-left: auto; margin-right: 0;">
+            <img src="@/assets/Rapi.gif" alt="My Animation">
+          </div>
+          <div style="display: block; margin-left: auto; margin-right: 0;">
+            <img src="@/assets/Snow_White.gif" alt="My Animation">
+          </div>
+          <div style="display: block; margin-left: auto; margin-right: 0;">
+            <img src="@/assets/Drake.gif" alt="My Animation">
+          </div>
+          <div style="display: block; margin-left: auto; margin-right: 0;">
+            <img src="@/assets/Exia.gif" alt="My Animation">
+          </div>
+          <div style="display: block; margin-left: auto; margin-right: 0;">
+            <img src="@/assets/Epinel.gif" alt="My Animation">
+          </div>
+          <div style="display: block; margin-left: auto; margin-right: 0;">
+            <img src="@/assets/alice.gif" alt="My Animation">
+          </div>
         </div>
         <infinite-loading :identifier="infiniteId"
                           @infinite="pageListUserHistory">
@@ -96,7 +125,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #4e4e7a;
+  background-color: #ffffff;
 
   .history-header{
     margin-top: 20px;
@@ -113,6 +142,7 @@ export default {
       display: flex;
       margin-bottom: 10px;
       border-radius: 5px;
+      border: 2px solid pink;
 
       img{
         max-height: 90px;
@@ -129,12 +159,8 @@ export default {
         .user-history-video-detail-createTime{
           color: gray;
         }
-
       }
-
     }
   }
-
 }
-
 </style>
